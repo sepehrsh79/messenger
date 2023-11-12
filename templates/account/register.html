@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block Content %}
+    <section class="section">
+        <div class="container">
+            <div class="add-row">
+                <div class="column is-6 is-offset-3 mb-4">
+                    <section class="hero is-primary">
+                        <div class="hero-body">
+                            <p class="title">Sign up</p>
+                            <p class="subtitle">Create new account to use Messenger</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="column is-4 is-offset-4">
+
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                        <div class="field">
+                            <label>Phone number (Username)</label>
+                            <div class="control">
+                                <input class="input" type="text" name="username">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>First name</label>
+                            <div class="control">
+                                <input class="input" type="text" name="first_name">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Last name</label>
+                            <div class="control">
+                                <input class="input" type="text" name="last_name">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Bio</label>
+                            <div class="control">
+                                <textarea class="textarea" name="bio"></textarea>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Avatar</label>
+                            <div class="control">
+                                <input class="input" type="file" name="avatar">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Password</label>
+                            <div class="control">
+                                <input class="input" type="password" name="password1">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Re-Password</label>
+                            <div class="control">
+                                <input class="input" type="password" name="password2">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="button is-info">Submit</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

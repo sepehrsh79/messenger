@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags static %}
+
+{% block Content %}
+    <section class="section">
+    <div class="container">
+        <div class="columns is-multiline">
+            <div class="column is-6 is-offset-3 mb-4">
+                <section class="hero is-primary">
+                    <div class="hero-body">
+                        <p class="title">Login</p>
+                    </div>
+                </section>
+            </div>
+            <div class="column is-4 is-offset-4">
+
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="field">
+                        <label>Username</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Username" name="username">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Password</label>
+                        <div class="control">
+                            <input class="input" type="password" placeholder="password" name="password">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-info">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

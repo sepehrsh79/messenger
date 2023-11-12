@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block Content %}
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column is-6 is-offset-3">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-64x64">
+                                    <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}https://bulma.io/images/placeholders/128x128.png{% endif %}" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong>{{ user.first_name }} {{ user.last_name }}</strong> <small>{{ user.username }}</small>
+                                        <br>
+                                         {{ user.bio }}
+                                    </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <a class="level-item" aria-label="reply">
+                                        <span class="icon is-small">
+                                          <i class="fas fa-reply" aria-hidden="true"></i>
+                                        </span>
+                                        </a>
+                                        <a class="level-item" aria-label="retweet">
+                                        <span class="icon is-small">
+                                          <i class="fas fa-retweet" aria-hidden="true"></i>
+                                        </span>
+                                        </a>
+                                        <a class="level-item" aria-label="like">
+                                        <span class="icon is-small">
+                                          <i class="fas fa-heart" aria-hidden="true"></i>
+                                        </span>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="column is-4 is-offset-4">
+                    <div class="field is-size-5-widescreen has-text-centered">
+                        <label>Room Code</label>
+                        <div class="control mt-1 is-flex is-justify-content-center">
+                            <input class="block rounded-md border-2 card-header-icon" type="text"
+                                   id="room-code-input">
+                        </div>
+                    </div>
+                    <div class="field is-size-5-widescreen has-text-centered mt-5">
+                        {% if rooms %}
+                            <label>Your Rooms:</label>
+                            <ul>
+                                {% for room in rooms %}
+                                    <li>
+                                        <a href="{% url 'chat:room' room.code %}">{{ room.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <div class="field has-text-centered">
+                        <div class="control">
+                            <a class="button is-info" id="room-code-submit">Submit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Automatically set the focus to the room name input
+        document.querySelector('#room-code-input').focus();
+
+        // If you hit "enter" on the keyboard, trigger the click method
+        document.querySelector('#room-code-input').onkeyup = function (e) {
+            if (e.keyCode === 13) {
+                document.querySelector('#room-code-submit').click();
+            }
+        };
+
+        // When you submit the form, redirect the user to the room page
+        document.querySelector('#room-code-submit').onclick = function (e) {
+            var roomCode = document.querySelector('#room-code-input').value;
+
+            window.location.replace('chat/' + roomCode);
+        };
+    </script>
+
+{% endblock %}

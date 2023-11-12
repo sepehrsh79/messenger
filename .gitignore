@@ -1,0 +1,9 @@
+node_modules/
+static/
+media/
+env/
+venv/
+*.sqlite3
+.idea/
+__pycache__
+*.pyc

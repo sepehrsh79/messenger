@@ -1,0 +1,51 @@
+{% load static %}
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <strong class="navbar-item">
+           MESSENGER
+        </strong>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a href="{% url 'index' %}" class="navbar-item">
+                Home
+            </a>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'account:edit_account' %}" class="navbar-item">
+                    Edit profile
+                </a>
+            {% endif %}
+            <a href="{% url 'chat:doc' %}" class="navbar-item">
+                Documentation
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    {% if not request.user.is_authenticated %}
+                        <a href="{% url 'account:register_view' %}" class="button is-primary">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a href="{% url 'account:login_view' %}" class="button is-light">
+                            Log in
+                        </a>
+                    {% else %}
+                        <a class="button is-danger" href="{% url 'account:logout' %}">Log out</a>
+                        {% if request.user.is_superuser %}
+                            <a class="button is-primary" href="/admin">Admin Panel</a>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
